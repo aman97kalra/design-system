@@ -25,7 +25,7 @@ jobs:
           Test task for ${{ github.repository }}
         description: |
           Task description
-        fields: '{"customfield_11760": false}'
+        fields: '{"customfield_11760": 12396}'
         # fields: '{"Code Review URL": "github"}'
 
     - name: Log created issue
