@@ -6,7 +6,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: Jira Example
+    name: Create jira issue
     steps:
     - name: Login
       uses: atlassian/gajira-login@master
@@ -26,6 +26,7 @@ jobs:
         description: |
           Task description
         # fields: '{"Code Review URL": "github"}'
+          fields: '{"customfield_11760": false}'
 
     - name: Log created issue
       run: echo "Issue ${{ steps.create.outputs.issue }} was created"    
