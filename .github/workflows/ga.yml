@@ -25,7 +25,7 @@ jobs:
           Test task for ${{ github.repository }}
         description: |
           Task description
-        fields: '{"Code Review URL": "github"}'
+        # fields: '{"Code Review URL": "github"}'
 
     - name: Log created issue
       run: echo "Issue ${{ steps.create.outputs.issue }} was created"    
