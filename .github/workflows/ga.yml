@@ -1,8 +1,7 @@
 name: "Create tasks"
-on:
-  push:
-    branches:
-      - feat-gajira
+
+on: issues.opened
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -25,7 +24,7 @@ jobs:
           Test task for ${{ github.repository }}
         description: |
           Task description
-        fields: '{"customfield_11760":{"id":"12396","self":"https://innovaccer.atlassian.net/rest/api/2/customFieldOption/12396","value":"No"}}'
+        fields: '{"labels":["github"], "customfield_11760":{"id":"12396","self":"https://innovaccer.atlassian.net/rest/api/2/customFieldOption/12396","value":"No"}}'
         # fields: '{"Code Review URL": "github"}'
 
     - name: Log created issue
