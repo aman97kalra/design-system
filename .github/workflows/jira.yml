@@ -1,9 +1,13 @@
-name: "Create tasks"
+name: "Create task on jira"
 
-on: issues.opened
+on:
+  # https://docs.github.com/en/actions/reference/events-that-trigger-workflows#issues
+  # https://docs.github.com/en/developers/webhooks-and-events/webhook-events-and-payloads#issues
+  issues:
+    types: [opened]
 
 jobs:
-  build:
+  create_issue:
     runs-on: ubuntu-latest
     name: Create jira issue
     steps:
@@ -21,11 +25,10 @@ jobs:
         project: DS
         issuetype: Task
         summary: |
-          Test task for ${{ github.repository }}
+          ${{ github.event.issue.title }}
         description: |
-          Task description
-        fields: '{"labels":["github"], "customfield_11760":{"id":"12396","self":"https://innovaccer.atlassian.net/rest/api/2/customFieldOption/12396","value":"No"}}'
-        # fields: '{"Code Review URL": "github"}'
+          ${{ github.event.issue.body }}
+        fields: '{"labels":["github"], "customfield_11120":{"value":"${{ github.event.issue.html_url }}"}, "customfield_11760":{"id":"12396","self":"https://innovaccer.atlassian.net/rest/api/2/customFieldOption/12396","value":"No"}}'
 
     - name: Log created issue
       run: echo "Issue ${{ steps.create.outputs.issue }} was created"    
